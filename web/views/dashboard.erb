@@ -1,0 +1,62 @@
+<% title "Your Passwords" %>
+
+<div class="dashboard">
+    <div class="dashboard-header">
+        <h2>Your Credentials</h2>
+        <div class="dashboard-actions">
+            <button id="addCredentialBtn" class="btn">Add Credential</button>
+            <input type="text" id="searchInput" placeholder="Search credentials..." class="search-input">
+        </div>
+    </div>
+    
+    <div id="credentialsList" class="credentials-grid">
+        <% @credentials.each do |cred| %>
+            <div class="credential-card" data-id="<%= cred[:id] %>">
+                <h3><%= cred[:service] %></h3>
+                <p><strong>Username:</strong> <%= cred[:username] %></p>
+                <button class="btn-small view-password">Show Password</button>
+            </div>
+        <% end %>
+    </div>
+</div>
+
+<!-- Add Credential Modal -->
+<div id="addCredentialModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Add New Credential</h2>
+        <form id="addCredentialForm">
+            <div class="form-group">
+                <label for="service">Service</label>
+                <input type="text" id="service" name="service" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="url">URL (optional)</label>
+                <input type="url" id="url" name="url">
+            </div>
+            <div class="form-group">
+                <label for="notes">Notes (optional)</label>
+                <textarea id="notes" name="notes"></textarea>
+            </div>
+            <button type="submit" class="btn">Save Credential</button>
+        </form>
+    </div>
+</div>
+
+<!-- View Password Modal -->
+<div id="viewPasswordModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Credential Details</h2>
+        <div id="credentialDetails"></div>
+        <button id="copyPasswordBtn" class="btn">Copy to Clipboard</button>
+    </div>
+</div>

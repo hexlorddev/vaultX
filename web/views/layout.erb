@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>VaultX Password Manager</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <script src="/scripts/main.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>VaultX</h1>
+            <% if @current_user %>
+                <nav>
+                    <span>Welcome, <%= @current_user[:username] %>!</span>
+                    <a href="/dashboard">Dashboard</a>
+                    <a href="/logout">Logout</a>
+                </nav>
+            <% end %>
+        </div>
+    </header>
+    
+    <main class="container">
+        <% if flash[:notice] %>
+            <div class="alert success"><%= flash[:notice] %></div>
+        <% end %>
+        
+        <% if flash[:error] %>
+            <div class="alert error"><%= flash[:error] %></div>
+        <% end %>
+        
+        <%= yield %>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; <%= Time.now.year %> VaultX Password Manager</p>
+        </div>
+    </footer>
+</body>
+</html>

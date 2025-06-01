@@ -1,0 +1,31 @@
+<% title "Search Results" %>
+
+<div class="search-results">
+    <h2>Search Results for "<%= params[:q] %>"</h2>
+    
+    <% if @credentials.empty? %>
+        <p>No matching credentials found.</p>
+    <% else %>
+        <div class="credentials-grid">
+            <% @credentials.each do |cred| %>
+                <div class="credential-card" data-id="<%= cred[:id] %>">
+                    <h3><%= cred[:service] %></h3>
+                    <p><strong>Username:</strong> <%= cred[:username] %></p>
+                    <button class="btn-small view-password">Show Password</button>
+                </div>
+            <% end %>
+        </div>
+    <% end %>
+    
+    <a href="/dashboard" class="btn btn-secondary">Back to Dashboard</a>
+</div>
+
+<!-- View Password Modal -->
+<div id="viewPasswordModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Credential Details</h2>
+        <div id="credentialDetails"></div>
+        <button id="copyPasswordBtn" class="btn">Copy to Clipboard</button>
+    </div>
+</div>
