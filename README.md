@@ -54,7 +54,7 @@
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/yourusername/vaultx-password-manager.git
+git clone https://github.com/hexlorddev/vaultx-password-manager.git
 cd vaultx-password-manager
 
 # 2. Install dependencies
